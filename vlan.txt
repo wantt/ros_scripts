@@ -1,0 +1,19 @@
+记得修改mac地址，否则mac冲突
+实现vlan 交换机扩展路由器端口
+/interface vlan
+add arp=enabled disabled=no interface=ether1 mtu=1500 name=vlan1 vlan-id=1
+add arp=enabled disabled=no interface=ether1 mtu=1500 name=vlan2 vlan-id=2
+add arp=enabled disabled=no interface=ether1 mtu=1500 name=vlan3 vlan-id=3
+add arp=enabled disabled=no interface=ether1 mtu=1500 name=vlan4 vlan-id=4
+
+
+/interface bridge
+add name=bridge1 admin-mac=00:E0:4C:06:03:1B auto-mac=no disabled=no
+add name=bridge2 admin-mac=00:E0:4C:06:03:2B auto-mac=no disabled=no
+add name=bridge3 admin-mac=00:E0:4C:06:03:3B auto-mac=no disabled=no
+add name=bridge4 admin-mac=00:E0:4C:06:03:4B auto-mac=no disabled=no
+/interface bridge port
+add bridge=bridge1 interface=vlan1 disabled=no
+add bridge=bridge2 interface=vlan2 disabled=no
+add bridge=bridge3 interface=vlan3 disabled=no
+add bridge=bridge4 interface=vlan4 disabled=no
